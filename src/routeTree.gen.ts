@@ -9,38 +9,181 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppResumeAnalyzerRouteImport } from './routes/_app.resume-analyzer'
+import { Route as AppJobTrackerRouteImport } from './routes/_app.job-tracker'
+import { Route as AppJdMatcherRouteImport } from './routes/_app.jd-matcher'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppAtsAnalysisRouteImport } from './routes/_app.ats-analysis'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
 
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResumeAnalyzerRoute = AppResumeAnalyzerRouteImport.update({
+  id: '/resume-analyzer',
+  path: '/resume-analyzer',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppJobTrackerRoute = AppJobTrackerRouteImport.update({
+  id: '/job-tracker',
+  path: '/job-tracker',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppJdMatcherRoute = AppJdMatcherRouteImport.update({
+  id: '/jd-matcher',
+  path: '/jd-matcher',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAtsAnalysisRoute = AppAtsAnalysisRouteImport.update({
+  id: '/ats-analysis',
+  path: '/ats-analysis',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/ats-analysis': typeof AppAtsAnalysisRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/jd-matcher': typeof AppJdMatcherRoute
+  '/job-tracker': typeof AppJobTrackerRoute
+  '/resume-analyzer': typeof AppResumeAnalyzerRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/ats-analysis': typeof AppAtsAnalysisRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/jd-matcher': typeof AppJdMatcherRoute
+  '/job-tracker': typeof AppJobTrackerRoute
+  '/resume-analyzer': typeof AppResumeAnalyzerRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/ats-analysis': typeof AppAtsAnalysisRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/jd-matcher': typeof AppJdMatcherRoute
+  '/_app/job-tracker': typeof AppJobTrackerRoute
+  '/_app/resume-analyzer': typeof AppResumeAnalyzerRoute
+  '/_app/settings': typeof AppSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/analytics'
+    | '/ats-analysis'
+    | '/dashboard'
+    | '/jd-matcher'
+    | '/job-tracker'
+    | '/resume-analyzer'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/analytics'
+    | '/ats-analysis'
+    | '/dashboard'
+    | '/jd-matcher'
+    | '/job-tracker'
+    | '/resume-analyzer'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/login'
+    | '/register'
+    | '/_app/analytics'
+    | '/_app/ats-analysis'
+    | '/_app/dashboard'
+    | '/_app/jd-matcher'
+    | '/_app/job-tracker'
+    | '/_app/resume-analyzer'
+    | '/_app/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +191,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/resume-analyzer': {
+      id: '/_app/resume-analyzer'
+      path: '/resume-analyzer'
+      fullPath: '/resume-analyzer'
+      preLoaderRoute: typeof AppResumeAnalyzerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/job-tracker': {
+      id: '/_app/job-tracker'
+      path: '/job-tracker'
+      fullPath: '/job-tracker'
+      preLoaderRoute: typeof AppJobTrackerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/jd-matcher': {
+      id: '/_app/jd-matcher'
+      path: '/jd-matcher'
+      fullPath: '/jd-matcher'
+      preLoaderRoute: typeof AppJdMatcherRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/ats-analysis': {
+      id: '/_app/ats-analysis'
+      path: '/ats-analysis'
+      fullPath: '/ats-analysis'
+      preLoaderRoute: typeof AppAtsAnalysisRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppAtsAnalysisRoute: typeof AppAtsAnalysisRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppJdMatcherRoute: typeof AppJdMatcherRoute
+  AppJobTrackerRoute: typeof AppJobTrackerRoute
+  AppResumeAnalyzerRoute: typeof AppResumeAnalyzerRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppAtsAnalysisRoute: AppAtsAnalysisRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppJdMatcherRoute: AppJdMatcherRoute,
+  AppJobTrackerRoute: AppJobTrackerRoute,
+  AppResumeAnalyzerRoute: AppResumeAnalyzerRoute,
+  AppSettingsRoute: AppSettingsRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
