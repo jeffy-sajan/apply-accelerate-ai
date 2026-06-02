@@ -56,7 +56,7 @@ export function Pill({ tone = "neutral", className = "", children }: { tone?: "n
     destructive: "bg-destructive-soft text-destructive",
     purple: "bg-secondary text-secondary-foreground",
   };
-  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>{children}</span>;
+  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ${tones[tone]} ${className}`}>{children}</span>;
 }
 
 export function Button({
