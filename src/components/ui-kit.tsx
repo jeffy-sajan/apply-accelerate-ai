@@ -47,7 +47,7 @@ export function StatCard({
   );
 }
 
-export function Pill({ tone = "neutral", children }: { tone?: "neutral" | "primary" | "success" | "warning" | "destructive" | "purple"; children: React.ReactNode }) {
+export function Pill({ tone = "neutral", className = "", children }: { tone?: "neutral" | "primary" | "success" | "warning" | "destructive" | "purple"; className?: string; children: React.ReactNode }) {
   const tones: Record<string, string> = {
     neutral: "bg-muted text-muted-foreground",
     primary: "bg-primary-soft text-primary",
