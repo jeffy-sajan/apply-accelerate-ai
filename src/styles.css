@@ -21,7 +21,9 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
   --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
