@@ -1,15 +1,16 @@
 export function Card({ className = "", children }: { className?: string; children: React.ReactNode }) {
   return (
-    <div className={`rounded-xl border border-border bg-card shadow-card ${className}`}>{children}</div>
+    <div className={`border border-ink/15 bg-card ${className}`}>{children}</div>
   );
 }
 
-export function CardHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: React.ReactNode }) {
+export function CardHeader({ title, subtitle, action, eyebrow }: { title: string; subtitle?: string; action?: React.ReactNode; eyebrow?: string }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
-      <div>
-        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-        {subtitle && <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p>}
+    <div className="flex items-start justify-between gap-4 border-b border-ink/15 px-5 py-4">
+      <div className="min-w-0">
+        {eyebrow && <div className="eyebrow mb-1.5">{eyebrow}</div>}
+        <h3 className="font-display text-base text-foreground tracking-tight">{title}</h3>
+        {subtitle && <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>}
       </div>
       {action}
     </div>
@@ -21,26 +22,29 @@ export function StatCard({
   value,
   delta,
   trend = "up",
-  icon,
+  num,
 }: {
   label: string;
   value: string;
   delta?: string;
   trend?: "up" | "down" | "flat";
+  num?: string;
   icon?: React.ReactNode;
 }) {
   const trendColor =
-    trend === "up" ? "text-success bg-success-soft" : trend === "down" ? "text-destructive bg-destructive-soft" : "text-muted-foreground bg-muted";
+    trend === "up" ? "text-success" : trend === "down" ? "text-destructive" : "text-muted-foreground";
   return (
-    <div className="rounded-xl border border-border bg-card p-5 shadow-card">
+    <div className="relative flex flex-col justify-between border border-ink/15 bg-card p-5 min-h-[160px]">
       <div className="flex items-start justify-between">
-        <span className="text-xs font-medium text-muted-foreground">{label}</span>
-        {icon && <div className="grid h-8 w-8 place-items-center rounded-md bg-primary-soft text-primary">{icon}</div>}
+        <div className="eyebrow">{label}</div>
+        {num && <span className="font-mono text-[10px] text-muted-foreground">{num}</span>}
       </div>
-      <div className="mt-3 flex items-baseline gap-2">
-        <span className="text-2xl font-semibold tracking-tight text-foreground">{value}</span>
+      <div className="mt-4">
+        <div className="numeral text-5xl text-foreground">{value}</div>
         {delta && (
-          <span className={`rounded-full px-1.5 py-0.5 text-[11px] font-medium ${trendColor}`}>{delta}</span>
+          <div className={`mt-2 font-mono text-[11px] uppercase tracking-wider ${trendColor}`}>
+            {trend === "up" ? "▲" : trend === "down" ? "▼" : "■"} {delta}
+          </div>
         )}
       </div>
     </div>
@@ -49,14 +53,14 @@ export function StatCard({
 
 export function Pill({ tone = "neutral", className = "", children }: { tone?: "neutral" | "primary" | "success" | "warning" | "destructive" | "purple"; className?: string; children: React.ReactNode }) {
   const tones: Record<string, string> = {
-    neutral: "bg-muted text-muted-foreground",
-    primary: "bg-primary-soft text-primary",
-    success: "bg-success-soft text-success",
-    warning: "bg-warning-soft text-warning-foreground",
-    destructive: "bg-destructive-soft text-destructive",
-    purple: "bg-secondary text-secondary-foreground",
+    neutral: "border-ink/20 text-foreground",
+    primary: "border-ink text-foreground bg-ink/[0.04]",
+    success: "border-success/40 text-success",
+    warning: "border-warning/50 text-warning-foreground bg-warning-soft",
+    destructive: "border-destructive/40 text-destructive",
+    purple: "border-ink/40 text-foreground",
   };
-  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ${tones[tone]} ${className}`}>{children}</span>;
+  return <span className={`inline-flex items-center border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] ${tones[tone]} ${className}`}>{children}</span>;
 }
 
 export function Button({
@@ -66,14 +70,14 @@ export function Button({
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "outline" | "ghost" | "subtle" }) {
   const v: Record<string, string> = {
-    primary: "bg-primary text-primary-foreground hover:opacity-95 shadow-card",
-    outline: "border border-input bg-surface text-foreground hover:bg-muted",
+    primary: "bg-ink text-paper hover:bg-ink-2",
+    outline: "border border-ink bg-transparent text-foreground hover:bg-ink hover:text-paper",
     ghost: "text-foreground hover:bg-muted",
-    subtle: "bg-primary-soft text-primary hover:bg-primary-soft/70",
+    subtle: "border border-ink/20 bg-surface text-foreground hover:border-ink",
   };
   return (
     <button
-      className={`inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-3.5 text-sm font-medium transition ${v[variant]} ${className}`}
+      className={`inline-flex h-10 items-center justify-center gap-2 px-4 text-[13px] font-medium uppercase tracking-wider transition ${v[variant]} ${className}`}
       {...rest}
     >
       {children}
