@@ -14,13 +14,13 @@ export function Topbar({ title, subtitle, actions }: { title: string; subtitle?:
         </div>
       </div>
 
-      <div className="flex h-16 items-center gap-6 px-8">
+      <div className="flex h-16 items-center gap-4 px-8">
         <div className="min-w-0 flex-1">
-          <h1 className="font-display text-2xl leading-none text-foreground truncate">{title}</h1>
+          <h1 className="font-display text-2xl leading-none text-foreground">{title}</h1>
           {subtitle && <p className="mt-1.5 text-[13px] text-muted-foreground truncate">{subtitle}</p>}
         </div>
 
-        <div className="relative hidden md:flex items-center w-80 h-10 border border-input bg-surface">
+        <div className="relative hidden xl:flex items-center w-72 h-10 border border-input bg-surface shrink-0">
           <Search className="ml-3 h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
           <input
             type="search"
@@ -32,7 +32,7 @@ export function Topbar({ title, subtitle, actions }: { title: string; subtitle?:
           </kbd>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           {actions}
           <button className="relative grid h-10 w-10 place-items-center border border-input bg-surface text-foreground hover:bg-muted" aria-label="Notifications">
             <Bell className="h-4 w-4" strokeWidth={1.5} />
