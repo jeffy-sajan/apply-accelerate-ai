@@ -1,36 +1,43 @@
-import { Bell, Search, HelpCircle } from "lucide-react";
+import { Bell, Search, Command } from "lucide-react";
 
 export function Topbar({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: React.ReactNode }) {
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur">
-      <div className="flex h-16 items-center gap-4 px-6 lg:px-8">
+    <header className="sticky top-0 z-20 border-b-2 border-ink bg-background">
+      <div className="flex items-center justify-between px-8 pt-5 pb-2 border-b border-border">
+        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {today}
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          Issue · {title}
+        </div>
+      </div>
+
+      <div className="flex h-16 items-center gap-4 px-8">
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-base font-semibold text-foreground">{title}</h1>
-          {subtitle && <p className="truncate text-xs text-muted-foreground">{subtitle}</p>}
+          <h1 className="font-display text-2xl leading-none text-foreground">{title}</h1>
+          {subtitle && <p className="mt-1.5 text-[13px] text-muted-foreground truncate">{subtitle}</p>}
         </div>
 
-        <div className="relative hidden md:block w-72">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative hidden xl:flex items-center w-72 h-10 border border-input bg-surface shrink-0">
+          <Search className="ml-3 h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
           <input
             type="search"
-            placeholder="Search applications, roles…"
-            className="h-9 w-full rounded-md border border-input bg-surface pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/40"
+            placeholder="Search the archive…"
+            className="h-full w-full bg-transparent px-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
           />
-          <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">⌘K</kbd>
+          <kbd className="mr-2 flex items-center gap-0.5 border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <Command className="h-2.5 w-2.5" /> K
+          </kbd>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2 shrink-0">
           {actions}
-          <button className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Help">
-            <HelpCircle className="h-4 w-4" />
+          <button className="relative grid h-10 w-10 place-items-center border border-input bg-surface text-foreground hover:bg-muted" aria-label="Notifications">
+            <Bell className="h-4 w-4" strokeWidth={1.5} />
+            <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-warning" />
           </button>
-          <button className="relative grid h-9 w-9 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Notifications">
-            <Bell className="h-4 w-4" />
-            <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-destructive" />
-          </button>
-          <div className="ml-2 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.58_0.2_295)] text-xs font-semibold text-primary-foreground">
-            AM
-          </div>
         </div>
       </div>
     </header>

@@ -8,72 +8,85 @@ import {
   BarChart3,
   Settings,
   LogOut,
-  Sparkles,
 } from "lucide-react";
 
 const nav = [
-  { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
-  { label: "Resume Analyzer", to: "/resume-analyzer", icon: FileText },
-  { label: "ATS Analysis", to: "/ats-analysis", icon: ShieldCheck },
-  { label: "JD Matcher", to: "/jd-matcher", icon: Target },
-  { label: "Job Tracker", to: "/job-tracker", icon: Kanban },
-  { label: "Analytics", to: "/analytics", icon: BarChart3 },
-  { label: "Settings", to: "/settings", icon: Settings },
+  { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard, num: "01" },
+  { label: "Resume Analyzer", to: "/resume-analyzer", icon: FileText, num: "02" },
+  { label: "ATS Analysis", to: "/ats-analysis", icon: ShieldCheck, num: "03" },
+  { label: "JD Matcher", to: "/jd-matcher", icon: Target, num: "04" },
+  { label: "Job Tracker", to: "/job-tracker", icon: Kanban, num: "05" },
+  { label: "Analytics", to: "/analytics", icon: BarChart3, num: "06" },
+  { label: "Settings", to: "/settings", icon: Settings, num: "07" },
 ] as const;
 
 export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar">
-      <div className="flex h-16 items-center gap-2 px-5 border-b border-sidebar-border">
-        <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground shadow-card">
-          <Sparkles className="h-4 w-4" />
-        </div>
-        <div className="leading-tight">
-          <div className="text-sm font-semibold text-sidebar-foreground">CareerPilot</div>
-          <div className="text-[11px] text-muted-foreground -mt-0.5">AI Career Suite</div>
+    <aside className="hidden lg:flex w-72 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
+      <div className="px-6 pt-7 pb-6 border-b border-sidebar-border">
+        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/50">№ 001 — Vol. 26</div>
+        <Link to="/dashboard" className="mt-3 block font-display text-[28px] leading-[0.9] text-sidebar-primary">
+          Career<br/>Pilot<span className="text-warning">.</span>
+        </Link>
+        <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/50">
+          An AI Career Quarterly
         </div>
       </div>
 
-      <nav className="flex-1 px-3 py-4">
-        <div className="px-2 pb-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-          Workspace
+      <nav className="flex-1 px-3 py-5">
+        <div className="px-3 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
+          Sections
         </div>
-        <ul className="space-y-0.5">
+        <ul className="space-y-px">
           {nav.map((item) => {
-            const active = pathname === item.to || (item.to !== "/dashboard" && pathname.startsWith(item.to));
+            const active = pathname === item.to;
             const Icon = item.icon;
             return (
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className={`group flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm font-medium transition-colors ${
+                  className={`group flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                     active
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent/60"
+                      ? "bg-sidebar-accent text-sidebar-primary"
+                      : "text-sidebar-foreground/80 hover:bg-sidebar-accent/60 hover:text-sidebar-primary"
                   }`}
                 >
-                  <Icon className={`h-4 w-4 ${active ? "text-primary" : "text-muted-foreground group-hover:text-foreground"}`} />
-                  {item.label}
+                  <span className={`font-mono text-[10px] tabular-nums ${active ? "text-warning" : "text-sidebar-foreground/40"}`}>
+                    {item.num}
+                  </span>
+                  <Icon className="h-4 w-4 opacity-80" strokeWidth={1.5} />
+                  <span className="flex-1 font-medium tracking-tight">{item.label}</span>
+                  {active && <span className="h-1.5 w-1.5 rounded-full bg-warning" />}
                 </Link>
               </li>
             );
           })}
         </ul>
+
+        <div className="mt-8 mx-3 border-t border-sidebar-border pt-5">
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
+            This week
+          </div>
+          <p className="mt-2 font-display text-lg leading-tight text-sidebar-primary">
+            "Tailored resumes get 3.2× more callbacks."
+          </p>
+          <p className="mt-2 text-xs text-sidebar-foreground/50">— Internal data, May 2026</p>
+        </div>
       </nav>
 
-      <div className="border-t border-sidebar-border p-3">
-        <div className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-sidebar-accent/60">
-          <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.58_0.2_295)] text-sm font-semibold text-primary-foreground">
+      <div className="border-t border-sidebar-border p-4">
+        <div className="flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center bg-sidebar-primary text-sidebar-primary-foreground font-display text-sm">
             AM
           </div>
           <div className="min-w-0 flex-1 leading-tight">
-            <div className="truncate text-sm font-medium text-sidebar-foreground">Ananya Mehta</div>
-            <div className="truncate text-xs text-muted-foreground">ananya@careerpilot.ai</div>
+            <div className="truncate text-sm font-semibold text-sidebar-primary">Ananya Mehta</div>
+            <div className="truncate text-[11px] text-sidebar-foreground/50 font-mono uppercase tracking-wider">Pro · Member</div>
           </div>
-          <Link to="/login" className="rounded-md p-1.5 text-muted-foreground hover:bg-background hover:text-foreground" aria-label="Logout">
-            <LogOut className="h-4 w-4" />
+          <Link to="/login" className="p-2 text-sidebar-foreground/60 hover:text-sidebar-primary" aria-label="Logout">
+            <LogOut className="h-4 w-4" strokeWidth={1.5} />
           </Link>
         </div>
       </div>
