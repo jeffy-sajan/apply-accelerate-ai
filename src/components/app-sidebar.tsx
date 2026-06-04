@@ -65,7 +65,7 @@ export function AppSidebar() {
           })}
         </ul>
 
-        <div className="mt-8 mx-3 border-t border-sidebar-border pt-5">
+        <div className="mt-4 mx-3 border-t border-sidebar-border pt-3">
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
             This week
           </div>
