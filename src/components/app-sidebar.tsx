@@ -24,8 +24,8 @@ export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <aside className="hidden lg:flex h-screen w-72 shrink-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
-      <div className="px-6 pt-5 pb-4 border-b border-sidebar-border">
+    <aside className="hidden lg:flex w-72 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
+      <div className="px-6 pt-7 pb-6 border-b border-sidebar-border">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/50">№ 001 — Vol. 26</div>
         <Link to="/dashboard" className="mt-3 block font-display text-[28px] leading-[0.9] text-sidebar-primary">
           Career<br/>Pilot<span className="text-warning">.</span>
@@ -35,7 +35,7 @@ export function AppSidebar() {
         </div>
       </div>
 
-      <nav className="flex-1 px-3 py-3">
+      <nav className="flex-1 px-3 py-5">
         <div className="px-3 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
           Sections
         </div>
@@ -47,7 +47,7 @@ export function AppSidebar() {
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className={`group flex items-center gap-3 px-3 py-2 text-sm transition-colors ${
+                  className={`group flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                     active
                       ? "bg-sidebar-accent text-sidebar-primary"
                       : "text-sidebar-foreground/80 hover:bg-sidebar-accent/60 hover:text-sidebar-primary"
@@ -65,7 +65,7 @@ export function AppSidebar() {
           })}
         </ul>
 
-        <div className="mt-4 mx-3 border-t border-sidebar-border pt-3">
+        <div className="mt-8 mx-3 border-t border-sidebar-border pt-5">
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
             This week
           </div>
@@ -76,7 +76,7 @@ export function AppSidebar() {
         </div>
       </nav>
 
-      <div className="border-t border-sidebar-border p-3">
+      <div className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center bg-sidebar-primary text-sidebar-primary-foreground font-display text-sm">
             AM
