@@ -24,8 +24,8 @@ export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <aside className="hidden lg:flex w-72 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
-      <div className="px-6 pt-7 pb-6 border-b border-sidebar-border">
+    <aside className="hidden lg:flex h-screen w-72 shrink-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
+      <div className="px-6 pt-5 pb-4 border-b border-sidebar-border">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/50">№ 001 — Vol. 26</div>
         <Link to="/dashboard" className="mt-3 block font-display text-[28px] leading-[0.9] text-sidebar-primary">
           Career<br/>Pilot<span className="text-warning">.</span>
