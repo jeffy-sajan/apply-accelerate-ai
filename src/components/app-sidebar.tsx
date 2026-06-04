@@ -47,7 +47,7 @@ export function AppSidebar() {
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className={`group flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
+                  className={`group flex items-center gap-3 px-3 py-2 text-sm transition-colors ${
                     active
                       ? "bg-sidebar-accent text-sidebar-primary"
                       : "text-sidebar-foreground/80 hover:bg-sidebar-accent/60 hover:text-sidebar-primary"
