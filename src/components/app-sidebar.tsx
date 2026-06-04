@@ -76,7 +76,7 @@ export function AppSidebar() {
         </div>
       </nav>
 
-      <div className="border-t border-sidebar-border p-4">
+      <div className="border-t border-sidebar-border p-3">
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center bg-sidebar-primary text-sidebar-primary-foreground font-display text-sm">
             AM
