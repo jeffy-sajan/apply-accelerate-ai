@@ -35,7 +35,7 @@ export function AppSidebar() {
         </div>
       </div>
 
-      <nav className="flex-1 px-3 py-5">
+      <nav className="flex-1 px-3 py-3">
         <div className="px-3 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/40">
           Sections
         </div>
