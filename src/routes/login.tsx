@@ -1,28 +1,16 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Sign in · CareerPilot AI" }] }),
   component: LoginPage,
 });
 
-const stats = [
-  { k: "92", l: "Avg ATS score" },
-  { k: "3.1×", l: "More callbacks" },
-  { k: "11d", l: "Median time-to-offer" },
-];
-
-const bullets = [
-  "ATS-grade resume scoring on every upload",
-  "JD matcher surfaces missing keywords in seconds",
-  "Kanban tracker with interview reminders",
-];
-
 function LoginPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground grid lg:grid-cols-[1.05fr_1fr]">
+    <div className="h-screen overflow-hidden bg-background text-foreground grid lg:grid-cols-[1.05fr_1fr]">
       {/* Editorial left */}
-      <aside className="relative hidden lg:flex flex-col justify-between border-r border-ink/15 p-12">
+      <aside className="relative hidden lg:flex flex-col justify-between border-r border-ink/15 p-8 xl:p-10">
         <header className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="h-7 w-7 grid place-items-center bg-ink text-paper font-display text-sm">C</div>
@@ -31,31 +19,22 @@ function LoginPage() {
           <span className="eyebrow">Issue №26 / Sign In</span>
         </header>
 
-        <div>
-          <div className="eyebrow mb-4">The Career Quarterly</div>
-          <h1 className="font-display text-6xl xl:text-7xl leading-[0.92] tracking-tight">
+        <div className="min-h-0">
+          <div className="eyebrow mb-3">The Career Quarterly</div>
+          <h1 className="font-display text-5xl xl:text-6xl leading-[0.92] tracking-tight">
             Quiet tools.<br/>
             <span className="text-muted-foreground">Loud results.</span>
           </h1>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
             A focused workspace for job seekers who treat their search like the
             most important project of the year. Sign in and pick up where you left off.
           </p>
 
-          <div className="mt-10 grid grid-cols-3 border-y border-ink/15 divide-x divide-ink/15">
-            {stats.map((s) => (
-              <div key={s.l} className="py-5 pr-4 first:pr-4 [&:not(:first-child)]:pl-4">
-                <div className="numeral text-4xl">{s.k}</div>
-                <div className="eyebrow mt-2">{s.l}</div>
-              </div>
-            ))}
-          </div>
-
-          <figure className="mt-10 border-l-2 border-ink pl-5">
-            <blockquote className="font-display text-2xl leading-tight tracking-tight">
+          <figure className="mt-8 border-l-2 border-ink pl-5">
+            <blockquote className="font-display text-xl leading-tight tracking-tight">
               "Went from two callbacks a month to four interviews a week."
             </blockquote>
-            <figcaption className="eyebrow mt-3">Priya R. — Sr. PM, hired at Notion</figcaption>
+            <figcaption className="eyebrow mt-2">Priya R. — Sr. PM, hired at Notion</figcaption>
           </figure>
         </div>
 
@@ -66,25 +45,25 @@ function LoginPage() {
       </aside>
 
       {/* Form right */}
-      <main className="flex items-center justify-center p-6 sm:p-12">
+      <main className="flex items-center justify-center p-6 sm:p-10 overflow-hidden">
         <div className="w-full max-w-md">
-          <div className="lg:hidden mb-10 flex items-center gap-2">
+          <div className="lg:hidden mb-6 flex items-center gap-2">
             <div className="h-7 w-7 grid place-items-center bg-ink text-paper font-display text-sm">C</div>
             <span className="font-display text-base tracking-tight">CareerPilot</span>
           </div>
 
-          <div className="eyebrow mb-3">Section 01 — Access</div>
-          <h2 className="font-display text-5xl leading-[0.95] tracking-tight">
-            Welcome<br/>back.
+          <div className="eyebrow mb-2">Section 01 — Access</div>
+          <h2 className="font-display text-4xl leading-[0.95] tracking-tight">
+            Welcome back.
           </h2>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-muted-foreground">
             New to CareerPilot?{" "}
             <Link to="/register" className="text-foreground underline underline-offset-4 decoration-ink/40 hover:decoration-ink">
               Create an account
             </Link>
           </p>
 
-          <form className="mt-10 space-y-6">
+          <form className="mt-6 space-y-5">
             <Field label="Work email" type="email" placeholder="you@company.com" num="01" />
             <Field
               label="Password"
@@ -101,7 +80,7 @@ function LoginPage() {
 
             <Link
               to="/dashboard"
-              className="group flex h-12 w-full items-center justify-between bg-ink px-5 text-paper font-display text-sm tracking-wide uppercase hover:bg-ink/90 transition"
+              className="group flex h-11 w-full items-center justify-between bg-ink px-5 text-paper font-display text-sm tracking-wide uppercase hover:bg-ink/90 transition"
             >
               Enter workspace
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -115,20 +94,11 @@ function LoginPage() {
 
             <button
               type="button"
-              className="flex h-12 w-full items-center justify-center gap-3 border border-ink/20 bg-paper px-5 text-sm font-medium hover:border-ink hover:bg-paper-2 transition"
+              className="flex h-11 w-full items-center justify-center gap-3 border border-ink/20 bg-paper px-5 text-sm font-medium hover:border-ink hover:bg-paper-2 transition"
             >
               <GoogleIcon /> Continue with Google
             </button>
           </form>
-
-          <ul className="mt-10 space-y-2 border-t border-ink/15 pt-6">
-            {bullets.map((b) => (
-              <li key={b} className="flex items-start gap-3 text-sm">
-                <Check className="mt-0.5 h-4 w-4 shrink-0" />
-                <span className="text-muted-foreground">{b}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </main>
     </div>
@@ -140,7 +110,7 @@ function Field({
 }: { label: string; type: string; placeholder?: string; num: string; right?: React.ReactNode }) {
   return (
     <div className="group">
-      <div className="mb-2 flex items-baseline justify-between">
+      <div className="mb-1.5 flex items-baseline justify-between">
         <label className="flex items-baseline gap-3">
           <span className="font-mono text-[10px] tracking-widest text-muted-foreground">{num}</span>
           <span className="font-display text-sm tracking-tight">{label}</span>
@@ -150,7 +120,7 @@ function Field({
       <input
         type={type}
         placeholder={placeholder}
-        className="h-12 w-full border-0 border-b border-ink/25 bg-transparent px-0 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ink transition"
+        className="h-10 w-full border-0 border-b border-ink/25 bg-transparent px-0 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ink transition"
       />
     </div>
   );

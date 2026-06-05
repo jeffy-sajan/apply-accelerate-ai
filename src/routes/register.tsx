@@ -10,39 +10,36 @@ const benefits = [
   "Unlimited resume scans + ATS scoring",
   "AI keyword and skill-gap analysis",
   "Kanban tracker with interview reminders",
-  "Weekly editorial career insights",
 ];
-
-const press = ["FORBES", "TECHCRUNCH", "WIRED", "FAST CO."];
 
 function RegisterPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground grid lg:grid-cols-[1fr_1.05fr]">
+    <div className="h-screen overflow-hidden bg-background text-foreground grid lg:grid-cols-[1fr_1.05fr]">
       {/* Form left */}
-      <main className="flex items-center justify-center p-6 sm:p-12 order-2 lg:order-1">
+      <main className="flex items-center justify-center p-6 sm:p-10 overflow-hidden order-2 lg:order-1">
         <div className="w-full max-w-md">
-          <div className="lg:hidden mb-10 flex items-center gap-2">
+          <div className="lg:hidden mb-6 flex items-center gap-2">
             <div className="h-7 w-7 grid place-items-center bg-ink text-paper font-display text-sm">C</div>
             <span className="font-display text-base tracking-tight">CareerPilot</span>
           </div>
 
-          <div className="eyebrow mb-3">Section 02 — Enrollment</div>
-          <h2 className="font-display text-5xl leading-[0.95] tracking-tight">
-            Begin your<br/>next chapter.
+          <div className="eyebrow mb-2">Section 02 — Enrollment</div>
+          <h2 className="font-display text-4xl leading-[0.95] tracking-tight">
+            Begin your next chapter.
           </h2>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-muted-foreground">
             Free for 14 days. No card required.{" "}
             <Link to="/login" className="text-foreground underline underline-offset-4 decoration-ink/40 hover:decoration-ink">
               Already a member?
             </Link>
           </p>
 
-          <form className="mt-10 space-y-6">
+          <form className="mt-6 space-y-4">
             <Field num="01" label="Full name" placeholder="Ananya Mehta" />
             <Field num="02" label="Work email" type="email" placeholder="you@company.com" />
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-5">
               <Field num="03" label="Password" type="password" placeholder="8+ characters" />
-              <Field num="04" label="Confirm" type="password" placeholder="Repeat password" />
+              <Field num="04" label="Confirm" type="password" placeholder="Repeat" />
             </div>
 
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -53,7 +50,7 @@ function RegisterPage() {
 
             <Link
               to="/dashboard"
-              className="group flex h-12 w-full items-center justify-between bg-ink px-5 text-paper font-display text-sm tracking-wide uppercase hover:bg-ink/90 transition"
+              className="group flex h-11 w-full items-center justify-between bg-ink px-5 text-paper font-display text-sm tracking-wide uppercase hover:bg-ink/90 transition"
             >
               Create account
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -67,7 +64,7 @@ function RegisterPage() {
 
             <button
               type="button"
-              className="flex h-12 w-full items-center justify-center gap-3 border border-ink/20 bg-paper px-5 text-sm font-medium hover:border-ink hover:bg-paper-2 transition"
+              className="flex h-11 w-full items-center justify-center gap-3 border border-ink/20 bg-paper px-5 text-sm font-medium hover:border-ink hover:bg-paper-2 transition"
             >
               <GoogleIcon /> Sign up with Google
             </button>
@@ -76,7 +73,7 @@ function RegisterPage() {
       </main>
 
       {/* Editorial right */}
-      <aside className="relative hidden lg:flex flex-col justify-between border-l border-ink/15 p-12 order-1 lg:order-2">
+      <aside className="relative hidden lg:flex flex-col justify-between border-l border-ink/15 p-8 xl:p-10 order-1 lg:order-2">
         <header className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="h-7 w-7 grid place-items-center bg-ink text-paper font-display text-sm">C</div>
@@ -85,38 +82,29 @@ function RegisterPage() {
           <span className="eyebrow">Issue №26 / Join</span>
         </header>
 
-        <div>
-          <div className="eyebrow mb-4">Featured Volume — Spring '26</div>
-          <h1 className="font-display text-6xl xl:text-7xl leading-[0.92] tracking-tight">
+        <div className="min-h-0">
+          <div className="eyebrow mb-3">Featured Volume — Spring '26</div>
+          <h1 className="font-display text-5xl xl:text-6xl leading-[0.92] tracking-tight">
             The search,<br/>
             <span className="text-muted-foreground">refined.</span>
           </h1>
 
-          <ul className="mt-10 divide-y divide-ink/15 border-y border-ink/15">
+          <ul className="mt-8 divide-y divide-ink/15 border-y border-ink/15">
             {benefits.map((b, i) => (
-              <li key={b} className="flex items-center gap-5 py-4">
+              <li key={b} className="flex items-center gap-5 py-3">
                 <span className="font-mono text-[10px] tracking-widest text-muted-foreground w-8">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-display text-lg tracking-tight flex-1">{b}</span>
+                <span className="font-display text-base tracking-tight flex-1">{b}</span>
                 <Check className="h-4 w-4 text-foreground" />
               </li>
             ))}
           </ul>
-
-          <figure className="mt-10 border-l-2 border-ink pl-5">
-            <blockquote className="font-display text-2xl leading-tight tracking-tight">
-              "Reads like a magazine, works like a CRM. Finally a tool that respects the job seeker."
-            </blockquote>
-            <figcaption className="eyebrow mt-3">Marcus L. — Staff Engineer, hired at Vercel</figcaption>
-          </figure>
         </div>
 
-        <footer className="space-y-4">
-          <div className="eyebrow">As featured in</div>
-          <div className="flex items-center gap-6 font-display text-sm tracking-widest text-muted-foreground">
-            {press.map((p) => <span key={p}>{p}</span>)}
-          </div>
+        <footer className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-muted-foreground">
+          <span>© 2026 CareerPilot Labs</span>
+          <span>SOC 2 · Type II</span>
         </footer>
       </aside>
     </div>
@@ -128,14 +116,14 @@ function Field({
 }: { num: string; label: string; type?: string; placeholder?: string }) {
   return (
     <div>
-      <label className="mb-2 flex items-baseline gap-3">
+      <label className="mb-1.5 flex items-baseline gap-3">
         <span className="font-mono text-[10px] tracking-widest text-muted-foreground">{num}</span>
         <span className="font-display text-sm tracking-tight">{label}</span>
       </label>
       <input
         type={type}
         placeholder={placeholder}
-        className="h-12 w-full border-0 border-b border-ink/25 bg-transparent px-0 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ink transition"
+        className="h-10 w-full border-0 border-b border-ink/25 bg-transparent px-0 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ink transition"
       />
     </div>
   );
