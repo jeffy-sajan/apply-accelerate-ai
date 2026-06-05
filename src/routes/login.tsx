@@ -30,12 +30,27 @@ function LoginPage() {
             most important project of the year. Sign in and pick up where you left off.
           </p>
 
-          <figure className="mt-8 border-l-2 border-ink pl-5">
-            <blockquote className="font-display text-xl leading-tight tracking-tight">
-              "Went from two callbacks a month to four interviews a week."
-            </blockquote>
-            <figcaption className="eyebrow mt-2">Priya R. — Sr. PM, hired at Notion</figcaption>
-          </figure>
+          <div className="mt-8 space-y-3">
+            <div className="eyebrow">" style={{ letterSpacing: "0.1em" }}>What we do</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-1 w-1 bg-ink shrink-0" />
+                ATS‑optimized resume formatting and scoring
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-1 w-1 bg-ink shrink-0" />
+                Job description keyword and skill gap analysis
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-1 w-1 bg-ink shrink-0" />
+                Application pipeline and interview tracking
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-1 w-1 bg-ink shrink-0" />
+                AI‑powered career insights and progress reports
+              </li>
+            </ul>
+          </div>
         </div>
 
         <footer className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-muted-foreground">
