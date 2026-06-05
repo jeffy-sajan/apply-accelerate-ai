@@ -78,7 +78,7 @@ function LoginPage() {
             </Link>
           </p>
 
-          <form className="mt-6 space-y-5">
+          <form className="mt-6 space-y-4">
             <Field label="Work email" type="email" placeholder="you@company.com" num="01" />
             <Field
               label="Password"
@@ -87,11 +87,6 @@ function LoginPage() {
               num="02"
               right={<Link to="/login" className="eyebrow hover:text-foreground">Forgot?</Link>}
             />
-
-            <label className="flex items-center gap-2.5 text-sm text-foreground select-none">
-              <input type="checkbox" defaultChecked className="h-4 w-4 border border-ink accent-[var(--color-ink)] rounded-none" />
-              Keep me signed in for 30 days
-            </label>
 
             <Link
               to="/dashboard"
