@@ -31,7 +31,7 @@ function LoginPage() {
           </p>
 
           <div className="mt-8 space-y-3">
-            <div className="eyebrow">" style={{ letterSpacing: "0.1em" }}>What we do</div>
+            <div className="eyebrow">What we do</div>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <span className="mt-1.5 h-1 w-1 bg-ink shrink-0" />
